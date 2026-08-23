@@ -1,0 +1,24 @@
+import{Routes}from'@angular/router';import{adminGuard,authGuard,guestGuard}from'./core/auth.guard';
+export const routes:Routes=[
+ {path:'login',canActivate:[guestGuard],loadComponent:()=>import('./pages/auth/auth.component').then(m=>m.LoginComponent)},
+ {path:'registro',canActivate:[guestGuard],loadComponent:()=>import('./pages/auth/auth.component').then(m=>m.RegisterComponent)},
+ {path:'admin',canActivate:[adminGuard],loadComponent:()=>import('./pages/admin/admin.component').then(m=>m.AdminComponent),children:[
+  {path:'',loadComponent:()=>import('./pages/admin/admin.component').then(m=>m.AdminDashboardComponent)},
+  {path:'productos',loadComponent:()=>import('./pages/admin/admin.component').then(m=>m.AdminProductsComponent)},
+  {path:'productos/nuevo',loadComponent:()=>import('./pages/admin/admin.component').then(m=>m.ProductFormComponent)},
+  {path:'productos/:id/editar',loadComponent:()=>import('./pages/admin/admin.component').then(m=>m.ProductFormComponent)},
+  {path:'productos/:id/stock',loadComponent:()=>import('./pages/admin/admin.component').then(m=>m.StockComponent)},
+  {path:'ordenes',loadComponent:()=>import('./pages/admin/admin.component').then(m=>m.AdminOrdersComponent)},
+  {path:'ordenes/:id',loadComponent:()=>import('./pages/admin/admin.component').then(m=>m.AdminOrderDetailComponent)},
+  {path:'clientes',loadComponent:()=>import('./pages/admin/admin.component').then(m=>m.AdminUsersComponent)}]},
+ {path:'',loadComponent:()=>import('./pages/store/store.component').then(m=>m.StoreComponent),children:[
+  {path:'',loadComponent:()=>import('./pages/store/store.component').then(m=>m.HomeComponent)},
+  {path:'catalogo',loadComponent:()=>import('./pages/store/store.component').then(m=>m.CatalogComponent)},
+  {path:'producto/:id',loadComponent:()=>import('./pages/store/store.component').then(m=>m.ProductDetailComponent)},
+  {path:'carrito',loadComponent:()=>import('./pages/store/store.component').then(m=>m.CartComponent)},
+  {path:'checkout',canActivate:[authGuard],loadComponent:()=>import('./pages/store/store.component').then(m=>m.CheckoutComponent)},
+  {path:'cuenta',canActivate:[authGuard],loadComponent:()=>import('./pages/store/store.component').then(m=>m.AccountComponent)},
+  {path:'cuenta/ordenes',canActivate:[authGuard],loadComponent:()=>import('./pages/store/store.component').then(m=>m.MyOrdersComponent)},
+  {path:'cuenta/ordenes/:id',canActivate:[authGuard],loadComponent:()=>import('./pages/store/store.component').then(m=>m.ClientOrderDetailComponent)}]},
+ {path:'**',redirectTo:''}
+];
