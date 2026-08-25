@@ -1,17 +1,17 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, signal } from "@angular/core";
 
 export interface ToastMsg {
   id: number;
   text: string;
-  kind: 'ok' | 'warn' | 'err';
+  kind: "ok" | "warn" | "err";
 }
 
-@Injectable({ providedIn: 'root' })
+@Injectable({ providedIn: "root" })
 export class ToastService {
   toasts = signal<ToastMsg[]>([]);
   private nextId = 0;
 
-  show(text: string, kind: ToastMsg['kind'] = 'ok'): void {
+  show(text: string, kind: ToastMsg["kind"] = "ok"): void {
     const id = this.nextId++;
     this.toasts.update((list) => [...list, { id, text, kind }]);
     setTimeout(() => this.dismiss(id), 4200);

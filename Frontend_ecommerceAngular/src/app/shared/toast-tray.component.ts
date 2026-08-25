@@ -1,13 +1,17 @@
-import { Component, inject } from '@angular/core';
-import { ToastService } from '../core/toast.service';
+import { Component, inject } from "@angular/core";
+import { ToastService } from "../core/toast.service";
 
 @Component({
-  selector: 'sb-toast-tray',
+  selector: "sb-toast-tray",
   standalone: true,
   template: `
     <div class="tray">
       @for (t of toast.toasts(); track t.id) {
-        <div class="toast" [class]="'k-' + t.kind" (click)="toast.dismiss(t.id)">
+        <div
+          class="toast"
+          [class]="'k-' + t.kind"
+          (click)="toast.dismiss(t.id)"
+        >
           {{ t.text }}
         </div>
       }
@@ -36,9 +40,15 @@ import { ToastService } from '../core/toast.service';
         cursor: pointer;
         animation: sb-rise 0.25s ease;
       }
-      .k-ok { border-left: 4px solid var(--forest-deep); }
-      .k-warn { border-left: 4px solid var(--sand-deep); }
-      .k-err { border-left: 4px solid var(--blush-deep); }
+      .k-ok {
+        border-left: 4px solid var(--forest-deep);
+      }
+      .k-warn {
+        border-left: 4px solid var(--sand-deep);
+      }
+      .k-err {
+        border-left: 4px solid var(--blush-deep);
+      }
     `,
   ],
 })

@@ -1,7 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input } from "@angular/core";
 
 @Component({
-  selector: 'sb-leaf-spinner',
+  selector: "sb-leaf-spinner",
   standalone: true,
   template: `
     <svg
@@ -22,17 +22,28 @@ import { Component, Input } from '@angular/core';
   `,
   styles: [
     `
-      :host { display: inline-flex; }
+      :host {
+        display: inline-flex;
+      }
       .leaf-spin {
         animation: leaf-sway 1.1s ease-in-out infinite;
         transform-origin: center;
       }
       @keyframes leaf-sway {
-        0%, 100% { transform: rotate(-8deg) scale(1); opacity: 0.7; }
-        50% { transform: rotate(8deg) scale(1.05); opacity: 1; }
+        0%,
+        100% {
+          transform: rotate(-8deg) scale(1);
+          opacity: 0.7;
+        }
+        50% {
+          transform: rotate(8deg) scale(1.05);
+          opacity: 1;
+        }
       }
       @media (prefers-reduced-motion: reduce) {
-        .leaf-spin { animation: none; }
+        .leaf-spin {
+          animation: none;
+        }
       }
     `,
   ],
